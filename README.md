@@ -1,6 +1,9 @@
 # sir-trevor-angular
 
-npm install
-http-server
+```
+$ npm install
+$ http-server
 
-http://localhost:8080/app
+# Open url in browser
+$ open http://localhost:8080/app
+```
