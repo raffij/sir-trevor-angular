@@ -5,7 +5,8 @@ var sirAngular = angular.module('sirAngular', ['ngNewRouter'])
 
 function AppController($router) {
   $router.config([
-    { path: '/', component: 'editor' }
+    { path: '/editor', component: 'editor' },
+    { path: '/', component: 'home' }
   ]);
 }
 
@@ -31,15 +32,21 @@ sirAngular.directive('sirTrevor', function() {
       };
 
       scope.$on('$destroy', function() {
-        editorSt && editorSt.destroy();
+        if (editorSt) {
+          editorSt.destroy();
+          editorSt = undefined;
+        }
+
       });
     }
   };
 });
 
-sirAngular.controller('EditorController', function() {
-  this.body = '';
+sirAngular.controller('HomeController', function() {
+});
 
+sirAngular.controller('EditorController', function() {
+  
   this.setBody = function() {
     this.body = '{"data":[{"type":"text","data":{"text":"Hello, Im **Sir Trevor**.Create some new blocks and see _what I can do_."}},{"type":"video","data":{"source":"youtube","remote_id":"hcFLFpmc4Pg"}}]}'; 
   }
@@ -47,4 +54,6 @@ sirAngular.controller('EditorController', function() {
   this.clearBody = function() {
     this.body = '';
   }
+
+  this.setBody();
 });
